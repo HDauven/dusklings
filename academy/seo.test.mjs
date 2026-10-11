@@ -42,9 +42,9 @@ test('every page has a title, description, canonical URL, link preview and struc
     }
     for (const icon of [...doc.matchAll(/<link rel="(?:icon|apple-touch-icon)" href="([^"]+)"/g)].map(m => m[1])) assert.ok(existsSync(new URL(`../${icon}`, import.meta.url)), `${where}: ${icon} exists`);
     assert.equal(doc.match(/<footer class="site-footer">/g)?.length, 1, `${where} has the site footer`);
-    assert.match(doc, /Built by <a href="https:\/\/github\.com\/HDauven">Hein Dauven<\/a>/, `${where} credits its author`);
+    assert.match(doc, /Built by <a href="https:\/\/www\.mochavi\.com\/">Mochavi<\/a>/, `${where} credits Mochavi`);
     const author = PATHS.includes(page) ? data.author : data['@graph'].find(n => n['@type'] === 'WebSite').author;
-    assert.deepEqual(author, {'@type': 'Person', name: 'Hein Dauven', url: 'https://github.com/HDauven'}, `${where}: JSON-LD author`);
+    assert.deepEqual(author, {'@type': 'Person', name: 'Hein Dauven', url: 'https://github.com/HDauven', worksFor: {'@type': 'Organization', '@id': 'https://www.mochavi.com/#organization', name: 'Mochavi', url: 'https://www.mochavi.com/'}}, `${where}: JSON-LD author`);
   }
 });
 

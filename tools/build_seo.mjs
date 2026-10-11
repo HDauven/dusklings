@@ -15,7 +15,8 @@ export const SITE = 'https://dusklings.com';
 const root = resolve(import.meta.dirname, '..');
 const DUSK = {'@type': 'Thing', name: 'Dusk', url: 'https://dusk.network'};
 const SOURCE = 'https://github.com/HDauven/dusklings';
-const AUTHOR = {'@type': 'Person', name: 'Hein Dauven', url: 'https://github.com/HDauven'};
+const MAKER = {'@type': 'Organization', '@id': 'https://www.mochavi.com/#organization', name: 'Mochavi', url: 'https://www.mochavi.com/'};
+const AUTHOR = {'@type': 'Person', name: 'Hein Dauven', url: 'https://github.com/HDauven', worksFor: MAKER};
 
 const lessonUnits = lessons => lessons.map(l => ({label: `Lesson ${l.n}`, title: l.title, chapters: l.chapters, reference: l.reference}));
 
@@ -62,7 +63,7 @@ const text = s => String(s).replace(/[&<>]/g, c => ({'&': '&amp;', '<': '&lt;', 
 const attr = s => text(s).replace(/"/g, '&quot;');
 const plain = html => String(html).replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 
-const provider = {'@type': 'Organization', '@id': `${SITE}/#org`, name: 'Dusklings', url: `${SITE}/`, logo: `${SITE}/assets/icons/icon-512.png`, sameAs: [SOURCE]};
+const provider = {'@type': 'Organization', '@id': `${SITE}/#org`, name: 'Dusklings', url: `${SITE}/`, logo: `${SITE}/assets/icons/icon-512.png`, sameAs: [SOURCE], parentOrganization: MAKER};
 function structuredData(page) {
   if (page === HOME) return {
     '@context': 'https://schema.org',
@@ -132,7 +133,7 @@ ${units}
 // Every page ends with the same footer.
 const footer = () => `  <footer class="site-footer"><div>
     <p>Progress stays in this browser. Contract checks use a Rust-subset interpreter; reference answers also run in Dusk's VM.</p>
-    <p><span>Built by <a href="${AUTHOR.url}">${AUTHOR.name}</a></span> <a href="${SOURCE}">Source on GitHub</a></p>
+    <p><span>Built by <a href="${MAKER.url}">${MAKER.name}</a></span> <a href="${SOURCE}">Source on GitHub</a></p>
   </div></footer>`;
 
 function between(html, name, content, file) {
@@ -183,7 +184,7 @@ function llms() {
     '# Dusklings', '',
     `> ${HOME.description}`, '',
     'Dusklings is a set of browser lessons about the Dusk blockchain. Learners share one pixel creature, a Duskling, across four independent paths. Progress is saved in the browser. Contract checks run a Rust-subset interpreter in the page, and every reference answer is also compiled with Dusk Forge and replayed in Dusk\'s VM. Circuit checks make and verify real PLONK proofs.', '',
-    `Built by ${AUTHOR.name} (${AUTHOR.url}).`, '',
+    `Built by ${MAKER.name} (${MAKER.url}), the software company founded by ${AUTHOR.name} (${AUTHOR.url}).`, '',
     '## Paths', '',
     ...PATHS.map(p => `- [${p.name}](${url(p)}): ${p.description}`), '',
     '## Full text', '',
