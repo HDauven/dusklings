@@ -15,6 +15,7 @@
     "build:almanac": "node tools/build_almanac.mjs",
     "build:seo": "node tools/build_seo.mjs",
     "build:images": "node tools/build_images.mjs",
-    "build:trailer": "node tools/trailer/build.mjs"
+    "build:trailer": "node tools/trailer/build.mjs",
+    "indexnow": "node tools/indexnow.mjs"
   }
 }
