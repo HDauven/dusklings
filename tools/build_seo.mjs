@@ -13,10 +13,10 @@ import {lessons as stats} from '../academy/stats-lessons.js';
 
 export const SITE = 'https://dusklings.com';
 const root = resolve(import.meta.dirname, '..');
-const DUSK = {'@type': 'Thing', name: 'Dusk', url: 'https://dusk.network'};
+const DUSK = {'@type': 'Organization', '@id': 'https://dusk.network/#organization', name: 'Dusk', url: 'https://dusk.network/'};
 const SOURCE = 'https://github.com/HDauven/dusklings';
 const MAKER = {'@type': 'Organization', '@id': 'https://www.mochavi.com/#organization', name: 'Mochavi', url: 'https://www.mochavi.com/'};
-const AUTHOR = {'@type': 'Person', name: 'Hein Dauven', url: 'https://github.com/HDauven', worksFor: MAKER};
+const AUTHOR = {'@type': 'Person', '@id': 'https://heindauven.com/#person', name: 'Hein Dauven', url: 'https://heindauven.com/', sameAs: ['https://github.com/HDauven'], worksFor: MAKER};
 
 const lessonUnits = lessons => lessons.map(l => ({label: `Lesson ${l.n}`, title: l.title, chapters: l.chapters, reference: l.reference}));
 

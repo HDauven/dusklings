@@ -44,7 +44,7 @@ test('every page has a title, description, canonical URL, link preview and struc
     assert.equal(doc.match(/<footer class="site-footer">/g)?.length, 1, `${where} has the site footer`);
     assert.match(doc, /Built by <a href="https:\/\/www\.mochavi\.com\/">Mochavi<\/a>/, `${where} credits Mochavi`);
     const author = PATHS.includes(page) ? data.author : data['@graph'].find(n => n['@type'] === 'WebSite').author;
-    assert.deepEqual(author, {'@type': 'Person', name: 'Hein Dauven', url: 'https://github.com/HDauven', worksFor: {'@type': 'Organization', '@id': 'https://www.mochavi.com/#organization', name: 'Mochavi', url: 'https://www.mochavi.com/'}}, `${where}: JSON-LD author`);
+    assert.deepEqual(author, {'@type': 'Person', '@id': 'https://heindauven.com/#person', name: 'Hein Dauven', url: 'https://heindauven.com/', sameAs: ['https://github.com/HDauven'], worksFor: {'@type': 'Organization', '@id': 'https://www.mochavi.com/#organization', name: 'Mochavi', url: 'https://www.mochavi.com/'}}, `${where}: JSON-LD author`);
   }
 });
 
